@@ -1,10 +1,10 @@
-# surf-flutter-study-jam-5
+# Мое приложение
 
 <p align="center">
 <img src="https://surf.ru/wp-content/themes/surf/assets/img/logo.svg" height="120" />
 </p>
 
-## Требования к приложению
+## Реализован самый простой уровень сложности
 
 - Версия Flutter: **3.16.3**
 - Версия Dart: **3.2.3**
