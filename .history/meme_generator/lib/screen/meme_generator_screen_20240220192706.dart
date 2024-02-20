@@ -125,7 +125,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                       );
                     },
                     child: textEditingController.text == ''
-                        ? const Text('Добавить текст',
+                        ? const Text(' Оставь свой след в истории...',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,

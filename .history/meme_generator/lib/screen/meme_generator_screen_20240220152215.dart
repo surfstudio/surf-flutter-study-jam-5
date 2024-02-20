@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../widgets/dialog/mem_text_dialog.dart';
+import '../widgets/navbar_widget.dart';
+
 class MemeGeneratorScreen extends StatefulWidget {
   const MemeGeneratorScreen({Key? key}) : super(key: key);
 
@@ -9,28 +12,21 @@ class MemeGeneratorScreen extends StatefulWidget {
 }
 
 class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
-  late TextEditingController textEditingController = TextEditingController();
+  late final TextEditingController textEditingController = TextEditingController();
   @override
   void initState() {
     super.initState();
-    textEditingController = TextEditingController();
   }
 
-  @override
-  void dispose() {
-    textEditingController.dispose;
-    super.dispose();
-  }
-
-  final TextEditingController imageUrlController = TextEditingController();
-  Future<String> _pastePhotoFromInternet() async {
-    final linkPaste = await Clipboard.getData(Clipboard.kTextPlain);
-    if (linkPaste != null) {
+  late final TextEditingController imageUrlCcontroller = TextEditingController();
+  void _pastePhotoFromInternet() async {
+    final value = await Clipboard.getData('text/plain');
+    if (value != null) {
       setState(() {
-        imageUrlController.text = linkPaste.text!;
+        imageUrlCcontroller.text = value.text ??
+            'https://s2.best-wallpaper.net/wallpaper/2560x1600/2104/Rhino-head-horn-eye-black-background_2560x1600.jpg';
       });
     }
-    return imageUrlController.text;
   }
 
   @override
@@ -47,10 +43,25 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           mainAxisSize: MainAxisSize.min,
-          children: [],
+          children: [
+            // ElevatedButton.icon(
+            //   label: Text(
+            //     'Add_photo by link',
+            //     style: TextStyle(color: Colors.black),
+            //   ),
+            //   onPressed: _pastePhotoFromInternet,
+            //   icon: const Icon(Icons.add_a_photo_sharp),
+            // ),
+          ],
         ),
       ),
       extendBodyBehindAppBar: false,
+      appBar: AppBar(
+        title: const Text('Здесь мог бы быть ваш мем'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        // systemOverlayStyle: const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
+      ),
       backgroundColor: Colors.black,
       body: Center(
         child: ColoredBox(
@@ -76,7 +87,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: Image.network(
-                            imageUrlController.text,
+                            imageUrlCcontroller.text,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -89,9 +100,9 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                             title: TextField(
                               controller: textEditingController,
-                              keyboardAppearance: Brightness.dark,
                               keyboardType: TextInputType.multiline,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
@@ -99,13 +110,9 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                                 fontFamily: 'Impact',
                               ),
                               decoration: const InputDecoration(
-                                border: InputBorder.none,
-                                hintText: 'Добавить текст',
-                                hintStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Impact',
-                                  fontSize: 16,
-                                ),
+                                border: InputBorder.none, hintText: 'Здесь будет ваш комментарий',
+                                hintStyle: TextStyle(color: Colors.white, fontFamily: 'Impact', fontSize: 16),
+                                // 'Здесь мог бы быть ваш мем',
                               ),
                             ),
                             titleTextStyle:
@@ -113,34 +120,29 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                             actionsOverflowButtonSpacing: 20,
                             actions: [
                               ElevatedButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop(textEditingController);
-                                  setState(() {});
-                                },
-                                child: const Text("Подтвердить"),
-                              ),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text("Отмена")),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text("Добавить"))
                             ],
                           );
                         },
                       );
                     },
-                    child: textEditingController.text == ''
-                        ? const Text('Добавить текст',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Impact',
-                              fontSize: 40,
-                            ))
-                        : Text(
-                            textEditingController.text,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Impact',
-                              fontSize: 40,
-                            ),
-                          ),
+                    child: const Text(
+                      'Здесь будет ваш комментарий', textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Impact',
+                        fontSize: 40,
+                      ),
+                      // 'Здесь мог бы быть ваш мем',
+                    ),
                   ),
                 ],
               ),
