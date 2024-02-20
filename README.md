@@ -1,7 +1,7 @@
 # Мое приложение
 
 <p align="center">
-<img src="https://babylabpro.ru/img/surf/198.jpg" height="300" />
+<img src="https://babylabpro.ru/img/surf/198.png" height="300" />
 </p>
 
 ## Реализован самый простой уровень сложности
