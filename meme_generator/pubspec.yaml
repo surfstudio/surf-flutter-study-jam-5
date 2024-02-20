@@ -17,6 +17,7 @@ dependencies:
   provider: ^6.1.1
   matrix_gesture_detector: ^0.2.0-nullsafety.1
   text_editor: ^0.7.0
+  cached_network_image: ^3.3.1
 
 dev_dependencies:
   flutter_test:
