@@ -12,6 +12,7 @@ class MemeGeneratorScreen extends StatelessWidget {
       ),
     );
     return Scaffold(
+      appBar: AppBar(),
       backgroundColor: Colors.black,
       body: Center(
         child: ColoredBox(
