@@ -23,14 +23,13 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
   }
 
   final TextEditingController imageUrlController = TextEditingController();
-  Future<String> _pastePhotoFromInternet() async {
+  _pastePhotoFromInternet() async {
     final linkPaste = await Clipboard.getData(Clipboard.kTextPlain);
     if (linkPaste != null) {
       setState(() {
         imageUrlController.text = linkPaste.text!;
       });
     }
-    return imageUrlController.text;
   }
 
   @override
@@ -47,10 +46,28 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           mainAxisSize: MainAxisSize.min,
-          children: [],
+          children: [
+            // ElevatedButton.icon(
+            //   label: Text(
+            //     'Add_photo by link',
+            //     style: TextStyle(color: Colors.black),
+            //   ),
+            //   onPressed: _pastePhotoFromInternet,
+            //   icon: const Icon(Icons.add_a_photo_sharp),
+            // ),
+          ],
         ),
       ),
       extendBodyBehindAppBar: false,
+      // appBar: AppBar(
+      //   title: const Text(
+      //     'surf-flutter-study-jam-5',
+      //     style: TextStyle(color: Colors.white),
+      //   ),
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 1,
+      //   // systemOverlayStyle: const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
+      // ),
       backgroundColor: Colors.black,
       body: Center(
         child: ColoredBox(
@@ -100,12 +117,8 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                               ),
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
-                                hintText: 'Добавить текст',
-                                hintStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Impact',
-                                  fontSize: 16,
-                                ),
+                                hintText: 'Здесь будет ваш комментарий',
+                                hintStyle: TextStyle(color: Colors.white, fontFamily: 'Impact', fontSize: 16б),
                               ),
                             ),
                             titleTextStyle:
@@ -125,7 +138,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                       );
                     },
                     child: textEditingController.text == ''
-                        ? const Text('Добавить текст',
+                        ? const Text(' Оставь свой след в истории...',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,

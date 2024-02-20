@@ -44,11 +44,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
     return Scaffold(
       bottomNavigationBar: const Padding(
         padding: EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          mainAxisSize: MainAxisSize.min,
-          children: [],
-        ),
+        child:  
       ),
       extendBodyBehindAppBar: false,
       backgroundColor: Colors.black,
@@ -75,9 +71,18 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                         decoration: decoration,
                         child: Padding(
                           padding: const EdgeInsets.all(4.0),
-                          child: Image.network(
-                            imageUrlController.text,
-                            fit: BoxFit.cover,
+                          child: FutureBuilder<String>(
+                            future: _pastePhotoFromInternet(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return Image.network(
+                                  imageUrlController.text,
+                                  fit: BoxFit.cover,
+                                );
+                              } else {
+                                return const CircularProgressIndicator();
+                              }
+                            },
                           ),
                         ),
                       ),
@@ -125,7 +130,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                       );
                     },
                     child: textEditingController.text == ''
-                        ? const Text('Добавить текст',
+                        ? const Text(' Оставь свой след в истории...',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,

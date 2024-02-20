@@ -23,14 +23,13 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
   }
 
   final TextEditingController imageUrlController = TextEditingController();
-  Future<String> _pastePhotoFromInternet() async {
+  _pastePhotoFromInternet() async {
     final linkPaste = await Clipboard.getData(Clipboard.kTextPlain);
     if (linkPaste != null) {
       setState(() {
         imageUrlController.text = linkPaste.text!;
       });
     }
-    return imageUrlController.text;
   }
 
   @override
@@ -75,9 +74,18 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                         decoration: decoration,
                         child: Padding(
                           padding: const EdgeInsets.all(4.0),
-                          child: Image.network(
-                            imageUrlController.text,
-                            fit: BoxFit.cover,
+                          child: FutureBuilder<String>(
+                            future: _pastePhotoFromInternet(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return Image.network(
+                                  imageUrlController.text,
+                                  fit: BoxFit.cover,
+                                );
+                              } else {
+                                return const CircularProgressIndicator();
+                              }
+                            },
                           ),
                         ),
                       ),
@@ -100,7 +108,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                               ),
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
-                                hintText: 'Добавить текст',
+                                hintText: 'Здесь будет ваш комментарий',
                                 hintStyle: TextStyle(
                                   color: Colors.white,
                                   fontFamily: 'Impact',
@@ -125,7 +133,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                       );
                     },
                     child: textEditingController.text == ''
-                        ? const Text('Добавить текст',
+                        ? const Text(' Оставь свой след в истории...',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,

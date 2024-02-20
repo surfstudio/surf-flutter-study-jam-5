@@ -75,9 +75,13 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                         decoration: decoration,
                         child: Padding(
                           padding: const EdgeInsets.all(4.0),
-                          child: Image.network(
-                            imageUrlController.text,
-                            fit: BoxFit.cover,
+                          child:    
+                                  Image.network(
+                                  imageUrlController.text,
+                                  fit: BoxFit.cover,
+                                ) 
+                               
+                             
                           ),
                         ),
                       ),
@@ -125,7 +129,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                       );
                     },
                     child: textEditingController.text == ''
-                        ? const Text('Добавить текст',
+                        ? const Text(' Оставь свой след в истории...',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,
