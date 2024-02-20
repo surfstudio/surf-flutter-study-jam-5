@@ -9,9 +9,14 @@ environment:
   sdk: 3.2.3 # Dart SDK version
   flutter: 3.16.3 # Flutter SDK version
 
+
 dependencies:
   flutter:
     sdk: flutter
+
+  image_picker: ^1.0.0
+  path_provider: ^2.1.2
+  share: ^2.0.4
 
   cupertino_icons: ^1.0.2
 
