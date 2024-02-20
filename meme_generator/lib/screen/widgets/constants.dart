@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.I;
-final GlobalKey myApp = GlobalKey();
+// final GlobalKey myApp = GlobalKey();
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 final GlobalKey<ScaffoldMessengerState> snackbarKey =
     GlobalKey<ScaffoldMessengerState>();
@@ -74,16 +74,3 @@ class Snack {
     );
   }
 }
-
-Widget spinner(Color? color) => Center(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: CircularProgressIndicator(
-          color: color,
-          strokeWidth: 2,
-        ),
-      ),
-    );
-
-Future<void> pause2sec() async =>
-    await Future.delayed(const Duration(seconds: 2), () {});

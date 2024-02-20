@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:meme_generator/screen/choose_samples.dart';
 import 'package:meme_generator/screen/home/home_screen.dart';
 import 'package:meme_generator/screen/meme_from_scratch/meme_generator_screen.dart';
 import 'package:meme_generator/screen/widgets/constants.dart';
@@ -44,6 +45,13 @@ final GoRouter router = GoRouter(
       path: mainRoutesPath(MainRoutes.createNew),
       builder: (BuildContext context, GoRouterState state) {
         return const MemeGeneratorScreen();
+      },
+    ),
+    GoRoute(
+      name: mainRoutesName(MainRoutes.chooseSample),
+      path: mainRoutesPath(MainRoutes.chooseSample),
+      builder: (BuildContext context, GoRouterState state) {
+        return const ChooseSample();
       },
     ),
   ],

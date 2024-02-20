@@ -49,8 +49,8 @@ class HomeScreen extends StatelessWidget {
                   TappingContainer(
                     borderColor: AppColors.mainBlue,
                     text: 'Use samples',
-                    onTap: () =>
-                        context.pushNamed(mainRoutesName(MainRoutes.home)),
+                    onTap: () => context
+                        .pushNamed(mainRoutesName(MainRoutes.chooseSample)),
                   ),
                 ],
               ),
