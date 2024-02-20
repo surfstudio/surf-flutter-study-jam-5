@@ -1,7 +1,7 @@
 # Мое приложение
 
 <p align="center">
-<img src="https://surf.ru/wp-content/themes/surf/assets/img/logo.svg" height="120" />
+<img src="https://surf.ru/img/surf/1.jpg" height="120" />
 </p>
 
 ## Реализован самый простой уровень сложности
