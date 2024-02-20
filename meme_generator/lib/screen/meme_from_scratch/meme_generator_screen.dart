@@ -15,8 +15,6 @@ class MemeGeneratorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textAndImageHolder = getIt<TextAndImageHandler>();
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(

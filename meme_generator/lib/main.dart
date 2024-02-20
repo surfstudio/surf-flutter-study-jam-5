@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meme_generator/routers/routes.dart';
+import 'package:meme_generator/screen/widgets/constants.dart';
 import 'package:meme_generator/stores/init_store.dart';
 import 'package:meme_generator/theme/colors.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      scaffoldMessengerKey: snackbarKey,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,

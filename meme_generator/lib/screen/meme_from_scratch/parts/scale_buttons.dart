@@ -11,26 +11,14 @@ class _ScaleButtons extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton(
-              style: ButtonStyle(
-                foregroundColor:
-                    const MaterialStatePropertyAll(AppColors.mainWhite),
-                backgroundColor: MaterialStatePropertyAll(
-                  Colors.white.withAlpha(40),
-                ),
-              ),
+              style: scaleButtonDecoration,
               onPressed: () => textAndImageHolder.fontFlag.value != 2
                   ? textAndImageHolder.textScaleUp()
                   : {},
               child: const Text("Text scale Up")),
           Space.h10,
           ElevatedButton(
-            style: ButtonStyle(
-              foregroundColor:
-                  const MaterialStatePropertyAll(AppColors.mainWhite),
-              backgroundColor: MaterialStatePropertyAll(
-                Colors.white.withAlpha(40),
-              ),
-            ),
+            style: scaleButtonDecoration,
             onPressed: () => textAndImageHolder.fontFlag.value != 1
                 ? textAndImageHolder.textScaleDown()
                 : {},

@@ -36,14 +36,25 @@ class _MemePlaceHolder extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: RepaintBoundary(
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            'https://i.cbc.ca/1.6713656.1679693029!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/this-is-fine.jpg',
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      ),
+                      child: Observer(builder: (_) {
+                        return textAndImageHolder.imageLink.value == ''
+                            ? const Center(
+                                child: Text(
+                                  "meme picture",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: AppColors.mainWhite,
+                                  ),
+                                ),
+                              )
+                            : CachedNetworkImage(
+                                imageUrl: textAndImageHolder.imageLink.value,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) => const Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                      }),
                     ),
                   ),
                 ),

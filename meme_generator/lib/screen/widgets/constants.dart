@@ -7,15 +7,6 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 final GlobalKey<ScaffoldMessengerState> snackbarKey =
     GlobalKey<ScaffoldMessengerState>();
 
-class Widgets {
-  Widgets._();
-
-  static const vs10 = SizedBox(height: 10.0);
-  static const hs10 = SizedBox(width: 10.0);
-
-  static const divider = Divider();
-}
-
 class Space {
   Space._();
 

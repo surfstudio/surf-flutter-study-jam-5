@@ -1,3 +1,7 @@
+import 'dart:developer' as devtool;
+
+import 'package:http/http.dart' as http;
+import 'package:meme_generator/screen/widgets/constants.dart';
 import 'package:mobx/mobx.dart';
 
 class TextAndImageHandler {
@@ -7,6 +11,19 @@ class TextAndImageHandler {
   final Observable<double> fontSize = 25.0.obs();
 
   void tappingText(String text) => runInAction(() => inputText.value = text);
+  Future<void> inputImage(String text) async {
+    try {
+      final response = await http.head(Uri.parse(text));
+      if (response.statusCode == 200) {
+        runInAction(() => imageLink.value = text);
+      }
+    } catch (e, stacktrace) {
+      runInAction(() => imageLink.value =
+          'https://www.meme-arsenal.com/memes/32e50c2b42388a3f12d36ce32b8e91d3.jpg');
+      Snack('Your link is broken, body').error();
+      devtool.log('$e', stackTrace: stacktrace);
+    }
+  }
 
   void textScaleUp() {
     runInAction(() {

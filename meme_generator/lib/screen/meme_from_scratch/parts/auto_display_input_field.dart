@@ -23,6 +23,17 @@ class AutoDisplayInputFieldState extends State<AutoDisplayInputField> {
               hintText: 'Type inscription of meme...',
               hintStyle: const TextStyle(color: AppColors.mainWhite)),
         ),
+        Space.v10,
+        TextField(
+          style: const TextStyle(color: AppColors.mainWhite),
+          // onChanged: (value) => textHolder.inputImage(value),
+          onSubmitted: (value) => textHolder.inputImage(value),
+          decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.grey.withAlpha(30),
+              hintText: 'Paste image link',
+              hintStyle: const TextStyle(color: AppColors.mainWhite)),
+        ),
       ],
     );
   }
