@@ -32,8 +32,26 @@ class TextHandler {
   }
 }
 
+enum InputWay { upload, byLink }
+
 class ImageHandler {
   final Observable<String> imageLink = ''.obs();
+  final Observable<InputWay> inputWay = Observable(InputWay.byLink);
+
+  void prepareToLink() {
+    runInAction(() {
+      imageLink.value = '';
+      inputWay.value = InputWay.byLink;
+    });
+  }
+
+  void prepareToUpload() {
+    runInAction(() {
+      imageLink.value = '';
+      inputWay.value = InputWay.upload;
+    });
+  }
+
   Future<void> inputNetworkImage(String text) async {
     try {
       final response = await http.head(Uri.parse(text));

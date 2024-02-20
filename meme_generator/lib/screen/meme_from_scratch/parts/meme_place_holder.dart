@@ -38,28 +38,24 @@ class _MemePlaceHolder extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: RepaintBoundary(
                       child: Observer(
-                        builder: (_) => imageHolder.imageLink.value == ''
-                            ? const Center(
-                                child: Text(
-                                  "meme picture",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: AppColors.mainWhite,
+                        builder: (_) => imageHolder.inputWay.value ==
+                                InputWay.byLink
+                            ? imageHolder.imageLink.value == ''
+                                ? const _StockMemeImage()
+                                : CachedNetworkImage(
+                                    imageUrl: imageHolder.imageLink.value,
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) => const Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  )
+                            : imageHolder.imageLink.value == ''
+                                ? const _StockMemeImage()
+                                : Image(
+                                    image: FileImage(
+                                      File(imageHolder.imageLink.value),
+                                    ),
                                   ),
-                                ),
-                              )
-                            : Image(
-                                image: FileImage(
-                                  File(imageHolder.imageLink.value),
-                                ),
-                              ),
-                        // CachedNetworkImage(
-                        //     imageUrl: textAndImageHolder.imageLink.value,
-                        //     fit: BoxFit.cover,
-                        //     placeholder: (context, url) => const Center(
-                        //       child: CircularProgressIndicator(),
-                        //     ),
-                        //   );
                       ),
                     ),
                   ),
@@ -78,6 +74,23 @@ class _MemePlaceHolder extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _StockMemeImage extends StatelessWidget {
+  const _StockMemeImage();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text(
+        "meme picture",
+        style: TextStyle(
+          fontSize: 20,
+          color: AppColors.mainWhite,
         ),
       ),
     );

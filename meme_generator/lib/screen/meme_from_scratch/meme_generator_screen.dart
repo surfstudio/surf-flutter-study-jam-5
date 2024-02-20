@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:image_picker/image_picker.dart';
@@ -50,7 +51,7 @@ class MemeGeneratorScreen extends StatelessWidget {
                 children: [
                   _MemePlaceHolder(),
                   Space.v10,
-                  AutoDisplayInputField(),
+                  InputFields(),
                   Space.v10,
                   _UploadButton(),
                   Space.v10,
@@ -73,15 +74,20 @@ class _UploadButton extends StatelessWidget {
     final imageHolder = getIt<ImageHandler>();
 
     return ElevatedButton.icon(
-      label: const Text('upload image'),
-      icon: const Icon(Icons.photo_library_outlined),
-      onPressed: () async => PermissionService().camera(context, () async {
-        String photo = await PhotoService().getImageGallery();
-        if (photo.isNotEmpty) {
-          runInAction(() => imageHolder.imageLink.value = photo);
-        }
-      }),
-    );
+        label: const Text('upload image'),
+        icon: const Icon(Icons.photo_library_outlined),
+        onPressed: () async {
+          imageHolder.prepareToUpload();
+          PermissionService().camera(
+            context,
+            () async {
+              String photo = await PhotoService().getImageGallery();
+              if (photo.isNotEmpty) {
+                runInAction(() => imageHolder.imageLink.value = photo);
+              }
+            },
+          );
+        });
   }
 }
 

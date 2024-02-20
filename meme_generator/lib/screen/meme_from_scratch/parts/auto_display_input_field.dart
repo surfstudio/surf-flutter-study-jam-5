@@ -1,13 +1,13 @@
 part of "../meme_generator_screen.dart";
 
-class AutoDisplayInputField extends StatefulWidget {
-  const AutoDisplayInputField({super.key});
+class InputFields extends StatefulWidget {
+  const InputFields({super.key});
 
   @override
-  AutoDisplayInputFieldState createState() => AutoDisplayInputFieldState();
+  InputFieldsState createState() => InputFieldsState();
 }
 
-class AutoDisplayInputFieldState extends State<AutoDisplayInputField> {
+class InputFieldsState extends State<InputFields> {
   @override
   Widget build(BuildContext context) {
     final textHolder = getIt<TextHandler>();
@@ -28,8 +28,10 @@ class AutoDisplayInputFieldState extends State<AutoDisplayInputField> {
         Space.v10,
         TextField(
           style: const TextStyle(color: AppColors.mainWhite),
-          // onChanged: (value) => textHolder.inputImage(value),
-          onSubmitted: (value) => imageHolder.inputNetworkImage(value),
+          onSubmitted: (value) {
+            imageHolder.prepareToLink();
+            imageHolder.inputNetworkImage(value);
+          },
           decoration: InputDecoration(
               filled: true,
               fillColor: Colors.grey.withAlpha(30),
