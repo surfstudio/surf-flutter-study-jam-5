@@ -14,6 +14,9 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  provider: ^6.1.1
+  matrix_gesture_detector: ^0.2.0-nullsafety.1
+  text_editor: ^0.7.0
 
 dev_dependencies:
   flutter_test:
@@ -22,3 +25,11 @@ dev_dependencies:
   flutter_lints: ^2.0.1
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/noimage.jpg
+
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: fonts/OpenSans.ttf
