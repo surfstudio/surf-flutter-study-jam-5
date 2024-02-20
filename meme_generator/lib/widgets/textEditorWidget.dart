@@ -79,7 +79,7 @@ class _PositionedTextState extends State<PositionedText> {
           ),
         ),
         feedback: Container(
-          child: Text(_text, style: _textStyle),
+          child: Text(_text, overflow: TextOverflow.ellipsis, style: _textStyle),
         ),
         childWhenDragging: Container(),
         onDragEnd: (dragDetails) {
