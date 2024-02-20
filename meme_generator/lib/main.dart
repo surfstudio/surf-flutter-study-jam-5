@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meme_generator/routers/routes.dart';
-import 'package:meme_generator/screen/meme_generator_screen.dart';
+import 'package:meme_generator/stores/init_store.dart';
+import 'package:meme_generator/theme/colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  initStores();
 
   runApp(const MyApp());
 }
@@ -19,6 +21,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        iconTheme: const IconThemeData(
+          color: AppColors.mainWhite, //change your color here
+        ),
       ),
       routerConfig: router,
     );

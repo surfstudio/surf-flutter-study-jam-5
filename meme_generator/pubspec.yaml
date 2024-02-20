@@ -17,6 +17,8 @@ dependencies:
   go_router: ^13.2.0
   mobx: ^2.3.0+1
   get_it: ^7.6.7
+  cached_network_image: ^3.3.1
+  flutter_mobx: ^2.2.0+2
 
 dev_dependencies:
   flutter_test:
