@@ -12,7 +12,8 @@ class _MemePlaceHolder extends StatelessWidget {
       ),
     );
 
-    final textAndImageHolder = getIt<TextAndImageHandler>();
+    final textAndImageHolder = getIt<TextHandler>();
+    final imageHolder = getIt<ImageHandler>();
 
     return ColoredBox(
       color: Colors.black,
@@ -36,8 +37,8 @@ class _MemePlaceHolder extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: RepaintBoundary(
-                      child: Observer(builder: (_) {
-                        return textAndImageHolder.imageLink.value == ''
+                      child: Observer(
+                        builder: (_) => imageHolder.imageLink.value == ''
                             ? const Center(
                                 child: Text(
                                   "meme picture",
@@ -47,14 +48,19 @@ class _MemePlaceHolder extends StatelessWidget {
                                   ),
                                 ),
                               )
-                            : CachedNetworkImage(
-                                imageUrl: textAndImageHolder.imageLink.value,
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) => const Center(
-                                  child: CircularProgressIndicator(),
+                            : Image(
+                                image: FileImage(
+                                  File(imageHolder.imageLink.value),
                                 ),
-                              );
-                      }),
+                              ),
+                        // CachedNetworkImage(
+                        //     imageUrl: textAndImageHolder.imageLink.value,
+                        //     fit: BoxFit.cover,
+                        //     placeholder: (context, url) => const Center(
+                        //       child: CircularProgressIndicator(),
+                        //     ),
+                        //   );
+                      ),
                     ),
                   ),
                 ),

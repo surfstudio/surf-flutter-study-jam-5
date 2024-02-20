@@ -5,7 +5,7 @@ class _ScaleButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textAndImageHolder = getIt<TextAndImageHandler>();
+    final textAndImageHolder = getIt<TextHandler>();
     return Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -10,7 +10,9 @@ class AutoDisplayInputField extends StatefulWidget {
 class AutoDisplayInputFieldState extends State<AutoDisplayInputField> {
   @override
   Widget build(BuildContext context) {
-    final textHolder = getIt<TextAndImageHandler>();
+    final textHolder = getIt<TextHandler>();
+    final imageHolder = getIt<ImageHandler>();
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -27,7 +29,7 @@ class AutoDisplayInputFieldState extends State<AutoDisplayInputField> {
         TextField(
           style: const TextStyle(color: AppColors.mainWhite),
           // onChanged: (value) => textHolder.inputImage(value),
-          onSubmitted: (value) => textHolder.inputImage(value),
+          onSubmitted: (value) => imageHolder.inputNetworkImage(value),
           decoration: InputDecoration(
               filled: true,
               fillColor: Colors.grey.withAlpha(30),
