@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
         iconTheme: const IconThemeData(
-          color: AppColors.mainWhite, //change your color here
+          color: AppColors.mainWhite,
         ),
       ),
       routerConfig: router,
