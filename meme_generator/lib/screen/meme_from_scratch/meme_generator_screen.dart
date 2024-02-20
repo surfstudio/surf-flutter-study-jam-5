@@ -6,17 +6,17 @@ import 'package:meme_generator/screen/widgets/shared_content.dart';
 import 'package:meme_generator/stores/text_and_image_handler.dart';
 import 'package:meme_generator/theme/colors.dart';
 
+part 'parts/auto_display_input_field.dart';
+part 'parts/meme_place_holder.dart';
+part 'parts/scale_buttons.dart';
+
 class MemeGeneratorScreen extends StatelessWidget {
   const MemeGeneratorScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final decoration = BoxDecoration(
-      border: Border.all(
-        color: Colors.white,
-        width: 2,
-      ),
-    );
+    final textAndImageHolder = getIt<TextAndImageHandler>();
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -39,121 +39,24 @@ class MemeGeneratorScreen extends StatelessWidget {
       body: Container(
         constraints: const BoxConstraints.expand(),
         decoration: gradientDecoration(),
-        child: SafeArea(
+        child: const SafeArea(
           child: SingleChildScrollView(
             child: Padding(
               padding: mainPadding,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _MemePlaceHolder(decoration: decoration),
-                  const InputFieldWithAutoDisplay(),
+                  _MemePlaceHolder(),
+                  Space.v10,
+                  AutoDisplayInputField(),
+                  Space.v10,
+                  _ScaleButtons(),
                 ],
               ),
             ),
           ),
         ),
       ),
-    );
-  }
-}
-
-class _MemePlaceHolder extends StatelessWidget {
-  const _MemePlaceHolder({
-    required this.decoration,
-  });
-
-  final BoxDecoration decoration;
-
-  @override
-  Widget build(BuildContext context) {
-    final textAndImageHolder = getIt<TextAndImageHandler>();
-    return ColoredBox(
-      color: Colors.black,
-      child: DecoratedBox(
-        decoration: decoration,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 50,
-            vertical: 20,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(
-                width: double.infinity,
-                height: 200,
-                child: DecoratedBox(
-                  decoration: decoration,
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: RepaintBoundary(
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            'https://i.cbc.ca/1.6713656.1679693029!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/this-is-fine.jpg',
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Observer(
-                builder: (_) => Text(
-                  textAndImageHolder.inputText.value,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontFamily: 'Impact',
-                    fontSize: 40,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class InputFieldWithAutoDisplay extends StatefulWidget {
-  const InputFieldWithAutoDisplay({super.key});
-
-  @override
-  InputFieldWithAutoDisplayState createState() =>
-      InputFieldWithAutoDisplayState();
-}
-
-class InputFieldWithAutoDisplayState extends State<InputFieldWithAutoDisplay> {
-  String _userInput = '';
-
-  @override
-  Widget build(BuildContext context) {
-    final textHolder = getIt<TextAndImageHandler>();
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        TextField(
-          onChanged: (value) {
-            textHolder.tappingText(value);
-            // setState(() {
-            //   _userInput = value;
-            // });
-          },
-          decoration: const InputDecoration(
-            hintText: 'Type something...',
-          ),
-        ),
-        // const SizedBox(height: 20),
-        // Text(
-        //   'You typed: $_userInput',
-        //   style: const TextStyle(fontSize: 20),
-        // ),
-      ],
     );
   }
 }
