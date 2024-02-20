@@ -1,12 +1,12 @@
 # Мое приложение
 
 <p align="center">
-<img src="https://babylabpro.ru/img/surf/1.jpg" height="200" />
+<img src="https://babylabpro.ru/img/surf/198.jpg" height="300" />
 </p>
 
 ## Реализован самый простой уровень сложности
 
-Как видно из скриншотов (внизу страницы) сделаны:
+Как видно из скриншотов сделаны:
 <ul>
   <li>Взаимодействие с текстом: изменение текста, изменение шрифта, возможность поменять цвет и фон, плюс перемещение текста, не добавлена проверка при overlay, т.к. в таком виде текст более привлекателен и предсказуем (не стремится к переносу текста или уменьшению шрифта, чтобы влезть в экран.</li>
   <li>Взаимодействие с картинкой: перемещение, уменьшение, увеличение и поворот.</li>
@@ -22,15 +22,4 @@
   <li>text_editor</li>
   <li>cached_network_image</li>
 </ul>
-<p align="left">
-<img src="https://babylabpro.ru/img/surf/2.jpg" height="300" />
-</p>
-<p align="left">
-<img src="https://babylabpro.ru/img/surf/3.jpg" height="300" />
-</p>
-<p align="left">
-<img src="https://babylabpro.ru/img/surf/4.jpg" height="300" />
-</p>
-<p align="left">
-<img src="https://babylabpro.ru/img/surf/5.jpg" height="300" />
-</p>
+
