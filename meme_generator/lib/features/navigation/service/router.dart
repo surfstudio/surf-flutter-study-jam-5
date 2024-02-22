@@ -1,14 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
-import 'package:meme_generator/features/dash/presentation/dash_flow.dart';
-import 'package:meme_generator/features/debug/presentation/debug_flow.dart';
-import 'package:meme_generator/features/debug/presentation/screens/log_history/log_history_screen.dart';
-import 'package:meme_generator/features/debug/presentation/screens/log_history/log_history_wm.dart';
-import 'package:meme_generator/features/debug/presentation/screens/ui_kit/ui_kit_screen.dart';
-import 'package:meme_generator/features/info/presentation/info_flow.dart';
 import 'package:meme_generator/features/navigation/domain/entity/app_route_paths.dart';
-import 'package:meme_generator/features/temp/presentation/temp_flow.dart';
 
 part 'router.gr.dart';
 
@@ -26,33 +19,11 @@ class AppRouter extends _$AppRouter {
 
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(
-          page: TempRouter.page,
-          initial: true,
-          path: AppRoutePaths.tempPath,
-          children: [
-            AutoRoute(
-              page: DashRouter.page,
-              path: AppRoutePaths.dashPath,
-            ),
-            AutoRoute(
-              page: InfoRouter.page,
-              path: AppRoutePaths.infoPath,
-            ),
-            AutoRoute(
-              page: DebugRouter.page,
-              path: AppRoutePaths.debugPath,
-            ),
-          ],
-        ),
-        AutoRoute(
-          page: LogHistoryRouter.page,
-          path: AppRoutePaths.logHistory,
-        ),
-        AutoRoute(
-          page: UiKitRouter.page,
-          path: AppRoutePaths.uiKitPath,
-        ),
+        // TODO: add routes
+        ///   AutoRoute(
+        ///    page: TempRouter.page,
+        ///    initial: true,
+        ///    path: AppRoutePaths.tempPath,
       ];
 
   AppRouter._();
