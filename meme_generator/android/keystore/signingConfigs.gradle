@@ -1,0 +1,16 @@
+// Information about the signature of the application
+// https://developer.android.com/studio/publish/app-signing#secure-shared-keystore
+
+android {
+    signingConfigs {
+        // TODO: Add your own signing config for the release build.
+        release {
+            apply from: '../keystore/keystoreConfig.gradle'
+
+            keyAlias keystoreConfig.keyAlias
+            keyPassword keystoreConfig.keyPassword
+            storeFile file(keystoreConfig.storeFile)
+            storePassword keystoreConfig.storePassword
+        }
+    }
+}
