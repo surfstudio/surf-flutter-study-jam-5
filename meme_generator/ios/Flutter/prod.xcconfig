@@ -1,0 +1,8 @@
+#include "Pods/Target Support Files/Pods-Runner/Pods-Runner.release-prod.xcconfig"
+#include "Generated.xcconfig"
+#include "common.xcconfig"
+
+app_icon_suffix=-prod
+bundle_suffix=
+IDENTIFIER=$(identifier)$(bundle_suffix)
+APP_ICON=$(app_icon)$(app_icon_suffix)

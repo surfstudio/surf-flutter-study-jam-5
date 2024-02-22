@@ -1,25 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:meme_generator/screen/meme_generator_screen.dart';
+import 'package:meme_generator/config/app_config.dart';
+import 'package:meme_generator/config/environment/build_types.dart';
+import 'package:meme_generator/config/environment/environment.dart';
+import 'package:meme_generator/config/urls.dart';
+import 'package:meme_generator/runner.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+/// Main entry point of app.
+void main() {
+  Environment.init(
+    buildType: BuildType.debug,
+    config: AppConfig(
+      url: Url.testUrl,
+    ),
+  );
 
-  runApp(const MyApp());
-}
-
-/// App,s main widget.
-class MyApp extends StatelessWidget {
-  /// Constructor for [MyApp].
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MemeGeneratorScreen(),
-    );
-  }
+  run();
 }

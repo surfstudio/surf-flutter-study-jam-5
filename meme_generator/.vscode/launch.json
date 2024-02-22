@@ -1,0 +1,38 @@
+{
+    "configurations": [
+        {
+            "name": "Run debug",
+            "request": "launch",
+            "args": [
+                "--flavor",
+                "dev"
+            ],
+            "type": "dart"
+        },
+        {
+            "name": "Run profile",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "dev"
+            ],
+            "flutterMode": "profile"
+        },
+        {
+            "name": "Run all Tests",
+            "type": "dart",
+            "request": "launch",
+            "program": "./test/"
+        },
+        {
+            "name": "Golden",
+            "request": "launch",
+            "type": "dart",
+            "codeLens": {
+              "for": ["run-test", "run-test-file"]
+            },
+            "args": ["--update-goldens"]
+        }
+    ]
+}
