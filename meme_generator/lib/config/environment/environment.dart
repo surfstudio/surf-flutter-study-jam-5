@@ -1,21 +1,18 @@
 import 'dart:async';
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:logger/logger.dart';
 import 'package:meme_generator/common/service/log_history/log_history_service_impl.dart';
 import 'package:meme_generator/common/utils/logger/log_history.dart';
 import 'package:meme_generator/config/app_config.dart';
 import 'package:meme_generator/config/environment/build_types.dart';
 import 'package:meme_generator/persistence/storage/config_storage/config_storage.dart';
-import 'package:logger/logger.dart';
 import 'package:surf_logger/surf_logger.dart' as surf;
 
 /// Environment configuration.
 class Environment implements Listenable {
   static Environment? _instance;
 
-  /// Firebase options for initialize.
-  final FirebaseOptions? firebaseOptions;
   final BuildType _currentBuildType;
 
   /// Configuration.
@@ -37,7 +34,6 @@ class Environment implements Listenable {
   Environment._(
     this._currentBuildType,
     AppConfig config,
-    this.firebaseOptions,
   ) : _config = ValueNotifier<AppConfig>(config);
 
   /// Provides instance [Environment].
@@ -57,12 +53,10 @@ class Environment implements Listenable {
   static void init({
     required BuildType buildType,
     required AppConfig config,
-    FirebaseOptions? firebaseOptions,
   }) {
     _instance ??= Environment._(
       buildType,
       config,
-      firebaseOptions,
     );
   }
 

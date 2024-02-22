@@ -6,8 +6,6 @@ import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:meme_generator/common/service/theme/theme_service.dart';
 import 'package:meme_generator/common/service/theme/theme_service_impl.dart';
-import 'package:meme_generator/common/utils/analytics/firebase/firebase_analytic_strategy.dart';
-import 'package:meme_generator/common/utils/analytics/mock/mock_firebase_analytics.dart';
 import 'package:meme_generator/common/utils/default_error_handler.dart';
 import 'package:meme_generator/config/environment/environment.dart';
 import 'package:meme_generator/features/navigation/service/router.dart';
@@ -59,10 +57,7 @@ class AppScope implements IAppScope {
     _errorHandler = DefaultErrorHandler();
     _router = AppRouter.instance();
     _themeModeStorage = ThemeModeStorageImpl(_sharedPreferences);
-    _analyticsService = AnalyticService.withStrategies({
-      // TODO(init): can be removed MockFirebaseAnalytics, added for demo analytics track
-      FirebaseAnalyticStrategy(MockFirebaseAnalytics()),
-    });
+    _analyticsService = AnalyticService.withStrategies({});
   }
 
   @override
