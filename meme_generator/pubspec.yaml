@@ -6,18 +6,19 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: 3.2.3 # Dart SDK version
-  flutter: 3.16.3 # Flutter SDK version
+  sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.6
+  flutter_screenutil: ^5.9.0
+  elementary: ^3.0.0
+  rxdart: ^0.27.7
+  go_router: ^13.2.0
   provider: ^6.1.1
-  matrix_gesture_detector: ^0.2.0-nullsafety.1
-  text_editor: ^0.7.0
-  cached_network_image: ^3.3.1
+  elementary_helper: ^1.0.1
 
 dev_dependencies:
   flutter_test:
