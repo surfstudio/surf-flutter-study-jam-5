@@ -1,31 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:meme_generator/di_container/di_container.dart';
 import 'package:meme_generator/routers/routes.dart';
 import 'package:meme_generator/screen/widgets/constants.dart';
 import 'package:meme_generator/stores/init_store.dart';
 import 'package:meme_generator/theme/colors.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  initStores();
-
-  runApp(const MyApp());
+abstract class AppFactory {
+  Widget makeApp();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+final appFactory = makeAppFactory();
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      scaffoldMessengerKey: snackbarKey,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-        iconTheme: const IconThemeData(
-          color: AppColors.mainWhite,
-        ),
-      ),
-      routerConfig: router,
-    );
-  }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final app = appFactory.makeApp();
+  initStores();
+
+  runApp(app);
 }
