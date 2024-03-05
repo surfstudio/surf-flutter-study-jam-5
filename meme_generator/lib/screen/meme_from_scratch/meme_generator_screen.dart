@@ -17,7 +17,11 @@ part 'parts/scale_buttons.dart';
 part 'parts/upload_button.dart';
 
 class MemeGeneratorScreen extends StatelessWidget {
-  const MemeGeneratorScreen({Key? key}) : super(key: key);
+  final TextStore textStore;
+  const MemeGeneratorScreen({
+    Key? key,
+    required this.textStore,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,20 +47,25 @@ class MemeGeneratorScreen extends StatelessWidget {
       body: Container(
         constraints: const BoxConstraints.expand(),
         decoration: gradientDecoration(),
-        child: const SafeArea(
+        child: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
               padding: mainPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _MemePlaceHolder(),
+                  _MemePlaceHolder(
+                    textModel: textStore,
+                    imageModel: ImageHandler(),
+                  ),
                   Space.v10,
-                  InputFields(),
+                  InputFields(
+                    textModel: textStore,
+                  ),
                   Space.v10,
-                  _UploadButton(),
+                  const _UploadButton(),
                   Space.v10,
-                  _ScaleButtons(),
+                  const _ScaleButtons(),
                 ],
               ),
             ),

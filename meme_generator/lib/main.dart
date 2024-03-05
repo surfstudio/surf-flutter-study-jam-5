@@ -11,9 +11,7 @@ void main() async {
   runApp(const MyApp());
 }
 
-/// App,s main widget.
 class MyApp extends StatelessWidget {
-  /// Constructor for [MyApp].
   const MyApp({Key? key}) : super(key: key);
 
   @override

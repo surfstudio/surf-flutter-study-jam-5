@@ -44,7 +44,9 @@ final GoRouter router = GoRouter(
       name: mainRoutesName(MainRoutes.createNew),
       path: mainRoutesPath(MainRoutes.createNew),
       builder: (BuildContext context, GoRouterState state) {
-        return const MemeGeneratorScreen();
+        return MemeGeneratorScreen(
+          textStore: TextStore(),
+        );
       },
     ),
     GoRoute(

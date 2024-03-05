@@ -1,7 +1,39 @@
 part of "../meme_generator_screen.dart";
 
+class TextStore implements TextMemePlaceHolderModel {
+  @override
+  final Observable<double> fontSize = 25.0.obs();
+  @override
+  final Observable<String> inputText = 'meme'.obs();
+  @override
+  void tappingText(String text) => runInAction(() => inputText.value = text);
+}
+
+abstract class TextMemePlaceHolderModel {
+  final Observable<String> inputText;
+  final Observable<double> fontSize;
+  void tappingText(String text);
+
+  TextMemePlaceHolderModel({required this.inputText, required this.fontSize});
+}
+
+abstract class ImageMemePlaceHolderModel {
+  final Observable<String> imageLink;
+  final Observable<InputWay> inputWay;
+
+  ImageMemePlaceHolderModel({
+    required this.imageLink,
+    required this.inputWay,
+  });
+}
+
 class _MemePlaceHolder extends StatelessWidget {
-  const _MemePlaceHolder();
+  final TextMemePlaceHolderModel textModel;
+  final ImageMemePlaceHolderModel imageModel;
+  const _MemePlaceHolder({
+    required this.textModel,
+    required this.imageModel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +44,8 @@ class _MemePlaceHolder extends StatelessWidget {
       ),
     );
 
-    final textAndImageHolder = getIt<TextHandler>();
-    final imageHolder = getIt<ImageHandler>();
+    // final textAndImageHolder = getIt<TextHandler>();
+    // final imageHolder = getIt<ImageHandler>();
 
     return ColoredBox(
       color: Colors.black,
@@ -38,22 +70,22 @@ class _MemePlaceHolder extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: RepaintBoundary(
                       child: Observer(
-                        builder: (_) => imageHolder.inputWay.value ==
+                        builder: (_) => imageModel.inputWay.value ==
                                 InputWay.byLink
-                            ? imageHolder.imageLink.value == ''
+                            ? imageModel.imageLink.value == ''
                                 ? const _StockMemeImage()
                                 : CachedNetworkImage(
-                                    imageUrl: imageHolder.imageLink.value,
+                                    imageUrl: imageModel.imageLink.value,
                                     fit: BoxFit.cover,
                                     placeholder: (context, url) => const Center(
                                       child: CircularProgressIndicator(),
                                     ),
                                   )
-                            : imageHolder.imageLink.value == ''
+                            : imageModel.imageLink.value == ''
                                 ? const _StockMemeImage()
                                 : Image(
                                     image: FileImage(
-                                      File(imageHolder.imageLink.value),
+                                      File(imageModel.imageLink.value),
                                     ),
                                   ),
                       ),
@@ -63,11 +95,11 @@ class _MemePlaceHolder extends StatelessWidget {
               ),
               Observer(
                 builder: (_) => Text(
-                  textAndImageHolder.inputText.value,
+                  textModel.inputText.value,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'Impact',
-                    fontSize: textAndImageHolder.fontSize.value,
+                    fontSize: textModel.fontSize.value,
                     color: Colors.white,
                   ),
                 ),

@@ -1,7 +1,8 @@
 part of "../meme_generator_screen.dart";
 
 class InputFields extends StatefulWidget {
-  const InputFields({super.key});
+  final TextMemePlaceHolderModel textModel;
+  const InputFields({super.key, required this.textModel});
 
   @override
   InputFieldsState createState() => InputFieldsState();
@@ -10,7 +11,7 @@ class InputFields extends StatefulWidget {
 class InputFieldsState extends State<InputFields> {
   @override
   Widget build(BuildContext context) {
-    final textHolder = getIt<TextHandler>();
+    // final textHolder = getIt<TextHandler>();
     final imageHolder = getIt<ImageHandler>();
 
     return Column(
@@ -18,7 +19,7 @@ class InputFieldsState extends State<InputFields> {
       children: [
         TextField(
           style: const TextStyle(color: AppColors.mainWhite),
-          onChanged: (value) => textHolder.tappingText(value),
+          onChanged: (value) => widget.textModel.tappingText(value),
           decoration: InputDecoration(
               filled: true,
               fillColor: Colors.grey.withAlpha(30),

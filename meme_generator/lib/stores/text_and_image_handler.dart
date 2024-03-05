@@ -1,6 +1,7 @@
 import 'dart:developer' as devtool;
 
 import 'package:http/http.dart' as http;
+import 'package:meme_generator/screen/meme_from_scratch/meme_generator_screen.dart';
 import 'package:meme_generator/screen/widgets/constants.dart';
 import 'package:mobx/mobx.dart';
 
@@ -34,8 +35,10 @@ class TextHandler {
 
 enum InputWay { upload, byLink }
 
-class ImageHandler {
+class ImageHandler implements ImageMemePlaceHolderModel {
+  @override
   final Observable<String> imageLink = ''.obs();
+  @override
   final Observable<InputWay> inputWay = Observable(InputWay.byLink);
 
   void prepareToLink() {
