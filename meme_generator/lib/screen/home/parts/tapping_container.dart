@@ -18,6 +18,7 @@ class TappingContainer extends StatelessWidget {
         onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: borderColor,
               width: 10,
