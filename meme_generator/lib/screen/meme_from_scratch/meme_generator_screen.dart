@@ -3,11 +3,13 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:meme_generator/domain/entity/image_holder.dart';
 import 'package:meme_generator/screen/widgets/constants.dart';
 import 'package:meme_generator/screen/widgets/shared_content.dart';
 import 'package:meme_generator/services/permission_service.dart';
 import 'package:meme_generator/services/photo_service.dart';
 import 'package:meme_generator/stores/text_and_image_handler.dart';
+import 'package:meme_generator/stores/text_store.dart';
 import 'package:meme_generator/theme/colors.dart';
 import 'package:mobx/mobx.dart';
 
@@ -17,10 +19,8 @@ part 'parts/scale_buttons.dart';
 part 'parts/upload_button.dart';
 
 class MemeGeneratorScreen extends StatelessWidget {
-  final TextStore textStore;
   const MemeGeneratorScreen({
     Key? key,
-    required this.textStore,
   }) : super(key: key);
 
   @override
@@ -47,25 +47,20 @@ class MemeGeneratorScreen extends StatelessWidget {
       body: Container(
         constraints: const BoxConstraints.expand(),
         decoration: gradientDecoration(),
-        child: SafeArea(
+        child: const SafeArea(
           child: SingleChildScrollView(
             child: Padding(
               padding: mainPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _MemePlaceHolder(
-                    textModel: textStore,
-                    imageModel: ImageHandler(),
-                  ),
+                  _MemePlaceHolder(),
                   Space.v10,
-                  InputFields(
-                    textModel: textStore,
-                  ),
+                  InputFields(),
                   Space.v10,
-                  const _UploadButton(),
+                  _UploadButton(),
                   Space.v10,
-                  const _ScaleButtons(),
+                  _ScaleButtons(),
                 ],
               ),
             ),

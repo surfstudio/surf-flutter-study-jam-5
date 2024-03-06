@@ -5,20 +5,21 @@ class _UploadButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageHolder = getIt<ImageHandler>();
+    final imageStore = getIt<ImageStore>();
 
     return ElevatedButton.icon(
         label: const Text('upload image'),
         icon: const Icon(Icons.photo_library_outlined),
         onPressed: () async {
-          imageHolder.prepareToUpload();
+          imageStore.imageHolderProvider.prepareToUpload();
 
           PermissionService().camera(
             context,
             () async {
               String photo = await PhotoService().getImageGallery();
               if (photo.isNotEmpty) {
-                runInAction(() => imageHolder.imageLink.value = photo);
+                runInAction(
+                    () => imageStore.imageHolder.imageLink.value = photo);
               }
             },
           );

@@ -47,9 +47,7 @@ class MainNavigation implements MyAppNavigation {
         name: mainRoutesName(MainRoutes.createNew),
         path: mainRoutesPath(MainRoutes.createNew),
         builder: (BuildContext context, GoRouterState state) {
-          return MemeGeneratorScreen(
-            textStore: TextStore(),
-          );
+          return const MemeGeneratorScreen();
         },
       ),
       GoRoute(
